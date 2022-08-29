@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Project_P4.ViewModels;
 
-namespace Project_P4
+namespace Project_P4.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy IncomeView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class IncomeView : UserControl
     {
-        public MainWindow()
+        public IncomeView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

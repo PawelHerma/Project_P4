@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Project_P4.Models;
 using Project_P4.ViewModels;
 
-namespace Project_P4
+namespace Project_P4.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy MemberView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MemberView : UserControl
     {
-        public MainWindow()
+        public MemberView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MemberViewModel();
         }
     }
 }
