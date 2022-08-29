@@ -45,7 +45,7 @@ namespace Project_P4.ViewModels
         }
         public void RefreshMembers()
         {
-            var obj = new ObservableCollection<Member>((List<Member>)_memberData.GetAllMembers());
+            var obj = new ObservableCollection<Member>((IEnumerable<Member>)_memberData.GetAllMembers());
             AllMembers = obj;
         }
         public int IdCzlonka

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project_P4.Models;
+using Project_P4.DbModels;
 
 namespace Project_P4.ViewModels
 {
@@ -12,12 +12,12 @@ namespace Project_P4.ViewModels
         private Expence _expence;
         public int ExpenceID
         {
-            get { return _expence.ExpenceID; }
+            get { return _expence.ExpenceId; }
             set
             {
-                if (value != _expence.ExpenceID)
+                if (value != _expence.ExpenceId)
                 {
-                    _expence.ExpenceID = value;
+                    _expence.ExpenceId = value;
                     OnProperyChanged();
                     OnProperyChanged(nameof(ExpenceID));
                 }
@@ -25,12 +25,12 @@ namespace Project_P4.ViewModels
         }
         public int MemberID
         {
-            get { return _expence.MemberID; }
+            get { return _expence.MemberId; }
             set
             {
-                if (value != _expence.MemberID)
+                if (value != _expence.MemberId)
                 {
-                    _expence.MemberID = value;
+                    _expence.MemberId = value;
                     OnProperyChanged();
                     OnProperyChanged(nameof(MemberID));
                 }
@@ -38,12 +38,12 @@ namespace Project_P4.ViewModels
         }
         public int GroupID
         {
-            get { return _expence.GroupID; }
+            get { return _expence.GroupId; }
             set
             {
-                if (value != _expence.GroupID)
+                if (value != _expence.GroupId)
                 {
-                    _expence.GroupID = value;
+                    _expence.GroupId = value;
                     OnProperyChanged(nameof(GroupID));
                 }
             }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Project_P4.Models;
+using Project_P4.DbModels;
 
 namespace Project_P4.DataAccesLayers
 {
@@ -23,7 +23,7 @@ namespace Project_P4.DataAccesLayers
         {
             try
             {
-                dt.Rows.Add(null, member.MemberID, member.MemberName, member.MemberBudget);
+                dt.Rows.Add(null, member.MemberId, member.MemberName, member.MemberBudget);
                 return true;
             }
             catch (Exception e)
@@ -39,7 +39,7 @@ namespace Project_P4.DataAccesLayers
             {
                 var member = new Member
                 {
-                    MemberID = (int)dr[1],
+                    MemberId = (int)dr[1],
                     MemberName = dr[2].ToString(),
                     MemberBudget = (int)dr[3],
                 };

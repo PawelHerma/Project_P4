@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Project_P4.Models;
+using Project_P4.DbModels;
 using Project_P4.ViewModels;
 
 namespace Project_P4.Views
@@ -26,7 +26,6 @@ namespace Project_P4.Views
         public MemberView()
         {
             InitializeComponent();
-            DataContext = new MemberViewModel();
         }
     }
 }

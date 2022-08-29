@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project_P4.Models;
+using Project_P4.DbModels;
 
 namespace Project_P4.ViewModels
 {
@@ -12,12 +12,12 @@ namespace Project_P4.ViewModels
         private Income _income;
         public int MemberID
         {
-            get { return _income.MemberID; }
+            get { return _income.MemberId; }
             set
             {
-                if (value != _income.MemberID)
+                if (value != _income.MemberId)
                 {
-                    _income.MemberID = value;
+                    _income.MemberId = value;
                     OnProperyChanged(nameof(MemberID));
                 }
             }

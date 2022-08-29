@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project_P4.Models;
+using Project_P4.DbModels;
 
 namespace Project_P4.ViewModels
 {
@@ -12,12 +12,12 @@ namespace Project_P4.ViewModels
         private ExpGroup _expGroup;
         public int GroupID
         {
-            get { return _expGroup.GroupID; }
+            get { return _expGroup.GroupId; }
             set
             {
-                if ( value != _expGroup.GroupID)
+                if ( value != _expGroup.GroupId)
                 {
-                    _expGroup.GroupID = value;
+                    _expGroup.GroupId = value;
                     OnProperyChanged(nameof(GroupID));
                 }
             }
