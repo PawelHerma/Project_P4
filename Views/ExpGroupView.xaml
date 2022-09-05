@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Project_P4.Views"
+             xmlns:viewmodels="clr-namespace:Project_P4.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ExpGroupViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Content="ExpGroup"/>
-    </Grid>
+    <DockPanel>
+        <ListBox Name="ExpGroupListBox" DockPanel.Dock="Left" Width="500">
+            <ListView ItemsSource="{Binding AllExpGroups}" Width="469" Margin="10,10,0,0" Height="422" d:ItemsSource="{d:SampleData ItemCount=10}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ExpGroupSP" Orientation="Horizontal">
+                            <TextBlock  Text="{Binding GroupId}" />
+                            <TextBlock  Text="{Binding GroupName}" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ListBox>
+        <StackPanel DockPanel.Dock="Right">
+            <TextBlock Text="GroupID" TextAlignment="Center" Margin="10,15"/>
+            <TextBox Name="GroupIDTextBox" Margin="10,15" Text="{Binding GroupID}"/>
+            <TextBlock Text="Name" TextAlignment="Center" Margin="10,15"/>
+            <TextBox Name="BudzetTextBox" Margin="10,15" Text="{Binding GroupName}"/>
+            <Button Name="AddButton" Command="{Binding AddExpGroupClick}" Content="Add" Margin="10,15"></Button>
+            <Button Name="ChangeButton" Command="{Binding UpdateExpGroupClick}" Content="Change" Margin="10,15"></Button>
+            <Button Name="RemoveButton" Command="{Binding RemoveExpGroupClick}" Content="Remove" Margin="10,15"></Button>
+        </StackPanel>
+    </DockPanel>
 </UserControl>
