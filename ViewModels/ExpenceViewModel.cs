@@ -30,18 +30,34 @@ namespace Project_P4.ViewModels
 
         }
 
+        private void DisplayRemoveMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                var expenceToUpdate = context.Expences.Where(x => x.ExpenceId == _expence.ExpenceId).FirstOrDefault();
+                context.Expences.Remove(expenceToUpdate);
+                context.SaveChanges();
+                RefreshExpences();
+                AllExpences = new ObservableCollection<Expence>(context.Expences.ToList());
+            }
+            MessageBox.Show("Usunieto wydatek");
+        }
+
         private void DisplayUpdateMessage()
         {
             using (var context = new Projekt01_HermaContext())
             {
                 var expenceToUpdate = context.Expences.Where(x => x.ExpenceId == _expence.ExpenceId).FirstOrDefault();
-                expenceToUpdate.expe = Budzet;
-                context.Members.Update(memberToUpdate);
+                expenceToUpdate.MemberId = MemberID;
+                expenceToUpdate.GroupId = GroupID;
+                expenceToUpdate.ExpenceDate = ExpenceDate;
+                expenceToUpdate.ExpenceCost = ExpenceCost;
+                context.Expences.Update(expenceToUpdate);
                 context.SaveChanges();
-                RefreshMembers();
-                AllMembers = new ObservableCollection<Member>(context.Members.ToList());
+                RefreshExpences();
+                AllExpences = new ObservableCollection<Expence>(context.Expences.ToList());
             }
-            MessageBox.Show("Zaktualizowano Czlonka rodziny");
+            MessageBox.Show("Zaktualizowano wydatek");
         }
 
         private void DisplayAddMessage()
