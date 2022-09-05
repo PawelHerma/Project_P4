@@ -29,9 +29,9 @@ namespace Project_P4.Commands
             this.execute = execute;
             this.canExecute = canExecute;
         }
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
-            return this.canExecute == null || this.CanExecute(parameter);
+            return this.canExecute == null || this.canExecute(parameter);
         }
 
         public void Execute(object? parameter)

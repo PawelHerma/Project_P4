@@ -1,4 +1,5 @@
 ﻿using Project_P4;
+using Project_P4.Commands;
 using Project_P4.DataAccesLayers;
 using Project_P4.DbModels;
 using Project_P4.Views;
@@ -26,8 +27,50 @@ namespace Project_P4.ViewModels
             {
                 AllMembers = new ObservableCollection<Member>(context.Members.ToList());
             }
-            
+            AddMemberClick = new RelayCommand(x => DisplayAddMessage(), x => this.IsValid);
+            UpdateMemberClick = new RelayCommand(x => DisplayUpdateMessage(), x => this.IsValid);
+            RemoveMemberClick = new RelayCommand(x => DisplayRemoveMessage(), x => this.IsValid);
         }
+        
+        private void DisplayRemoveMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                var memberToRemove = context.Members.Where(x => x.MemberName == _member.MemberName).FirstOrDefault();
+                context.Members.Remove(memberToRemove);
+                context.SaveChanges();
+                RefreshMembers();
+                AllMembers = new ObservableCollection<Member>(context.Members.ToList());
+            }
+            MessageBox.Show("Usunięto Czlonka rodziny");
+        }
+
+        private void DisplayUpdateMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                var memberToUpdate = context.Members.Where(x => x.MemberName == _member.MemberName).FirstOrDefault();
+                memberToUpdate.MemberBudget = Budzet;
+                context.Members.Update(memberToUpdate);
+                context.SaveChanges();
+                RefreshMembers();
+                AllMembers = new ObservableCollection<Member>(context.Members.ToList());
+            }
+            MessageBox.Show("Zaktualizowano Czlonka rodziny");
+        }
+
+        private void DisplayAddMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                context.Members.Add(new Member { MemberName = Imie, MemberBudget = Budzet });
+                context.SaveChanges();
+                RefreshMembers();
+                AllMembers = new ObservableCollection<Member>(context.Members.ToList());
+            }
+            MessageBox.Show("Dodano Czlonka rodziny");
+        }
+
         private ObservableCollection<Member> _allMembers;
         
         public ObservableCollection<Member> AllMembers
@@ -80,6 +123,9 @@ namespace Project_P4.ViewModels
                 }
             }
         }
-
+        public ICommand AddMemberClick { get; set; }
+        public ICommand UpdateMemberClick { get; set; }
+        public ICommand RemoveMemberClick { get; set; }
+        public bool IsValid { get => !string.IsNullOrEmpty(Imie); }
     }
 }

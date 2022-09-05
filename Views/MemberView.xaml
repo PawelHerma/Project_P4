@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <ListBox Name="MemberListBox" DockPanel.Dock="Left" Width="500">
-            <ListView ItemsSource="{Binding AllMembers}" Width="469" Margin="10,10,0,0" Height="422">
+            <ListView ItemsSource="{Binding AllMembers}" Width="469" Margin="10,10,0,0" Height="422" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel x:Name="MemberSP" Orientation="Horizontal">
                             <TextBlock  Text="{Binding MemberId}" />
                             <TextBlock  Text="{Binding MemberName}" Margin="5,0,0,0" />
                             <TextBlock  Text="{Binding MemberBudget}" Margin="5,0,0,0" />
@@ -26,8 +26,8 @@
             <TextBlock Text="Budzet" TextAlignment="Center" Margin="10,15"/>
             <TextBox Name="BudzetTextBox" Margin="10,15" Text="{Binding Budzet}"/>
             <Button Name="AddButton" Command="{Binding AddMemberClick}" Content="Add" Margin="10,15"></Button>
-            <Button Name="ChangeButton" Content="Change" Margin="10,15"></Button>
-            <Button Name="RemoveButton" Content="Remove" Margin="10,15"></Button>
+            <Button Name="ChangeButton" Command="{Binding UpdateMemberClick}" Content="Change" Margin="10,15"></Button>
+            <Button Name="RemoveButton" Command="{Binding RemoveMemberClick}" Content="Remove" Margin="10,15"></Button>
         </StackPanel>
     </DockPanel>
 </UserControl>
