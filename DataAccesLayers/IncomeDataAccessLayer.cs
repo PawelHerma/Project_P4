@@ -9,28 +9,28 @@ using Project_P4.DbModels;
 
 namespace Project_P4.DataAccesLayers
 {
-    internal class MemberDataAccesLayer
+    internal class IncomeDataAccessLayer
     {
         DataTable dt;
-        public MemberDataAccesLayer()
+        public IncomeDataAccessLayer()
         {
-            dt = new DataTable("Member");
+            dt = new DataTable("Income");
             dt.Columns.Add("MemberId", typeof(int));
-            dt.Columns.Add("MemberName", typeof(string));
-            dt.Columns.Add("MemberBudget", typeof(int));
+            dt.Columns.Add("IncomeDate", typeof(DateTime));
+            dt.Columns.Add("IncomeCost", typeof(int));
         }
-        public List<Member> GetAllMembers()
+        public List<Income> GetAllIncomes()
         {
-            var list = new List<Member>();
+            var list = new List<Income>();
             foreach(DataRow dr in dt.Rows)
             {
-                var member = new Member
+                var income = new Income
                 {
                     MemberId = (int)dr[1],
-                    MemberName = dr[2].ToString(),
-                    MemberBudget = (int)dr[3],
+                    IncomeDate = (DateTime)dr[2],
+                    IncomeCost = (int)dr[3],
                 };
-                list.Add(member);
+                list.Add(income);
             }
             return list;
         }
