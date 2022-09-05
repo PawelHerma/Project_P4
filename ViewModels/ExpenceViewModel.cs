@@ -18,7 +18,6 @@ namespace Project_P4.ViewModels
                 if (value != _expence.ExpenceId)
                 {
                     _expence.ExpenceId = value;
-                    OnProperyChanged();
                     OnProperyChanged(nameof(ExpenceID));
                 }
             }
@@ -31,7 +30,6 @@ namespace Project_P4.ViewModels
                 if (value != _expence.MemberId)
                 {
                     _expence.MemberId = value;
-                    OnProperyChanged();
                     OnProperyChanged(nameof(MemberID));
                 }
             }

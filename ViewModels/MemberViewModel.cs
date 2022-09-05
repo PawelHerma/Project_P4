@@ -1,6 +1,7 @@
 ﻿using Project_P4;
 using Project_P4.DataAccesLayers;
 using Project_P4.DbModels;
+using Project_P4.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,11 +38,6 @@ namespace Project_P4.ViewModels
                 _allMembers = value;
                 OnProperyChanged(nameof(AllMembers));
             }
-        }
-        public ICommand AddMemberClick
-        {
-            get;
-            private set;
         }
         public void RefreshMembers()
         {
@@ -84,5 +80,6 @@ namespace Project_P4.ViewModels
                 }
             }
         }
+
     }
 }

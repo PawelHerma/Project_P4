@@ -10,10 +10,10 @@ namespace Project_P4.ViewModels
 {
     internal class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnProperyChanged([CallerMemberName] string property = null)
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnProperyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

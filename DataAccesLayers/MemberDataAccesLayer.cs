@@ -15,7 +15,7 @@ namespace Project_P4.DataAccesLayers
         public MemberDataAccesLayer()
         {
             dt = new DataTable("Member");
-            dt.Columns.Add("MemberID", typeof(int));
+            dt.Columns.Add("MemberId", typeof(int));
             dt.Columns.Add("MemberName", typeof(string));
             dt.Columns.Add("MemberBudget", typeof(int));
         }

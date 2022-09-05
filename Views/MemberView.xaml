@@ -12,7 +12,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="{Binding MemberID}" />
+                            <TextBlock  Text="{Binding MemberId}" />
                             <TextBlock  Text="{Binding MemberName}" Margin="5,0,0,0" />
                             <TextBlock  Text="{Binding MemberBudget}" Margin="5,0,0,0" />
                         </StackPanel>
