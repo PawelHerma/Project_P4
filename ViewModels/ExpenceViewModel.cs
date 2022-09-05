@@ -4,12 +4,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_P4.DbModels;
+using Project_P4.Commands;
+using Project_P4.DataAccesLayers;
+using System.Windows;
+using System.Windows.Input; 
+using System.Collections.ObjectModel;
 
 namespace Project_P4.ViewModels
 {
     internal class ExpenceViewModel : BaseViewModel
     {
-        private Expence _expence;
+        private Expence _expence = new Expence();
+        private ExpenceDataAccessLayer _expenceData;
+        public ExpenceViewModel()
+        {
+            _expenceData = new ExpenceDataAccessLayer();
+            RefreshExpences();
+            using ( var context  = new Projekt01_HermaContext())
+            {
+                AllExpences = new ObservableCollection<Expence>(context.Expences.ToList() );
+            }
+            AddExpenceClick = new RelayCommand(x => DisplayAddMessage());
+            UpdateExpenceClick = new RelayCommand(x => DisplayUpdateMessage());
+            RemoveExpenceClick = new RelayCommand(x => DisplayRemoveMessage());
+
+        }
+
+        private void DisplayUpdateMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                var expenceToUpdate = context.Expences.Where(x => x.ExpenceId == _expence.ExpenceId).FirstOrDefault();
+                expenceToUpdate.expe = Budzet;
+                context.Members.Update(memberToUpdate);
+                context.SaveChanges();
+                RefreshMembers();
+                AllMembers = new ObservableCollection<Member>(context.Members.ToList());
+            }
+            MessageBox.Show("Zaktualizowano Czlonka rodziny");
+        }
+
+        private void DisplayAddMessage()
+        {
+            using (var context = new Projekt01_HermaContext())
+            {
+                context.Expences.Add(new Expence{ ExpenceId = ExpenceID, MemberId = MemberID, GroupId = GroupID, ExpenceDate = ExpenceDate, ExpenceCost = ExpenceCost });
+                context.SaveChanges();
+                RefreshExpences();
+                AllExpences = new ObservableCollection<Expence>(context.Expences.ToList());
+            }
+            MessageBox.Show("Dodano wydatek");
+        }
+
+        private ObservableCollection<Expence> _allExpences;
+        public ObservableCollection<Expence> AllExpences
+        {
+            get { return _allExpences; }
+            set
+            {
+                _allExpences = value;
+                OnProperyChanged(nameof(AllExpences));
+            }
+        }
+
+        private void RefreshExpences()
+        {
+            var obj = new ObservableCollection<Expence>((IEnumerable<Expence>)_expenceData.GetAllExpences());
+            AllExpences = obj;
+        }
+
         public int ExpenceID
         {
             get { return _expence.ExpenceId; }
@@ -70,5 +133,8 @@ namespace Project_P4.ViewModels
                 }
             }
         }
+        public ICommand AddExpenceClick { get; set; }
+        public ICommand UpdateExpenceClick { get; set; }
+        public ICommand RemoveExpenceClick { get; set; }
     }
 }

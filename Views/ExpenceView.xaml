@@ -4,9 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Project_P4.Views"
+             xmlns:viewmodels="clr-namespace:Project_P4.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ExpenceViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Expence"/>
-    </Grid>
+    <DockPanel>
+        <ListBox Name="MemberListBox" DockPanel.Dock="Left" Width="500">
+            <ListView ItemsSource="{Binding AllExpences}" Width="469" Margin="10,10,0,0" Height="422" d:ItemsSource="{d:SampleData ItemCount=10}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="MemberSP" Orientation="Horizontal">
+                            <TextBlock  Text="{Binding ExpenceId}" />
+                            <TextBlock  Text="{Binding MemberId}" Margin="5,0,0,0"/>
+                            <TextBlock  Text="{Binding GroupId}" Margin="5,0,0,0"/>
+                            <TextBlock  Text="{Binding ExpenceDate}" Margin="5,0,0,0" />
+                            <TextBlock  Text="{Binding ExpenceCost}" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ListBox>
+        <StackPanel DockPanel.Dock="Right">
+            <TextBlock Text="ExpenceId" TextAlignment="Center" Margin="10,5"/>
+            <TextBox Name="ExpenceIdTextBox" Margin="10,5" Text="{Binding ExpenceID}"/>
+            <TextBlock Text="MemberId" TextAlignment="Center" Margin="10,5"/>
+            <TextBox Name="MemberIdTextBox" Margin="10,5" Text="{Binding MemberID}"/>
+            <TextBlock Text="GroupId" TextAlignment="Center" Margin="10,5"/>
+            <TextBox Name="GroupIdTextBox" Margin="10,5" Text="{Binding GroupID}"/>
+            <TextBlock Text="Date" TextAlignment="Center" Margin="10,5"/>
+            <TextBox Name="DateTextBox" Margin="10,5" Text="{Binding ExpenceDate}"/>
+            <TextBlock Text="Cost" TextAlignment="Center" Margin="10,5"/>
+            <TextBox Name="CostTextBox" Margin="10,5" Text="{Binding ExpenceCost}"/>
+            <Button Name="AddButton" Command="{Binding AddExpenceClick}" Content="Add" Margin="10,10"></Button>
+            <Button Name="ChangeButton" Command="{Binding UpdateExpenceClick}" Content="Change" Margin="10,10"></Button>
+            <Button Name="RemoveButton" Command="{Binding RemoveExpenceClick}" Content="Remove" Margin="10,10"></Button>
+        </StackPanel>
+    </DockPanel>
 </UserControl>
