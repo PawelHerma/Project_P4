@@ -81,6 +81,13 @@ namespace Project_P4.Migrations
 
             modelBuilder.Entity("Project_P4.DbModels.Income", b =>
                 {
+                    b.Property<int>("IncomeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("IncomeID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncomeId"), 1L, 1);
+
                     b.Property<decimal>("IncomeCost")
                         .HasColumnType("money");
 
@@ -90,6 +97,8 @@ namespace Project_P4.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int")
                         .HasColumnName("MemberID");
+
+                    b.HasKey("IncomeId");
 
                     b.HasIndex("MemberId");
 
