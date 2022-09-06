@@ -15,6 +15,7 @@ namespace Project_P4.DataAccesLayers
         public IncomeDataAccessLayer()
         {
             dt = new DataTable("Income");
+            dt.Columns.Add("IncomeId", typeof(int));
             dt.Columns.Add("MemberId", typeof(int));
             dt.Columns.Add("IncomeDate", typeof(DateTime));
             dt.Columns.Add("IncomeCost", typeof(int));
@@ -26,9 +27,10 @@ namespace Project_P4.DataAccesLayers
             {
                 var income = new Income
                 {
-                    MemberId = (int)dr[1],
-                    IncomeDate = (DateTime)dr[2],
-                    IncomeCost = (int)dr[3],
+                    IncomeId = (int)dr[1],
+                    MemberId = (int)dr[2],
+                    IncomeDate = (DateTime)dr[3],
+                    IncomeCost = (int)dr[4],
                 };
                 list.Add(income);
             }

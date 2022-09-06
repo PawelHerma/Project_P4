@@ -61,7 +61,7 @@ namespace Project_P4.ViewModels
         {
             using (var context = new Projekt01_HermaContext())
             {
-                context.Incomes.Add(new Income { MemberId = MemberID, IncomeDate = IncomeDate, IncomeCost = IncomeCost  });
+                context.Incomes.Add(new Income {IncomeId = IncomeID, MemberId = MemberID, IncomeDate = IncomeDate, IncomeCost = IncomeCost  });
                 context.SaveChanges();
                 RefreshIncomes();
                 AllIncomes = new ObservableCollection<Income>(context.Incomes.ToList());
@@ -88,7 +88,18 @@ namespace Project_P4.ViewModels
             var obj = new ObservableCollection<Income>((IEnumerable<Income>)_incomeData.GetAllIncomes());
             AllIncomes = obj;
         }
-
+        public int IncomeID
+        {
+            get { return _income.IncomeId; }
+            set
+            {
+                if(value != _income.IncomeId)
+                {
+                    _income.IncomeId = value;
+                    OnProperyChanged(nameof(IncomeID));
+                }
+            }
+        }
         public int MemberID
         {
             get { return _income.MemberId; }

@@ -76,7 +76,7 @@ namespace Project_P4.DbModels
 
             modelBuilder.Entity<Income>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IncomeId);
 
                 entity.ToTable("Income");
 
