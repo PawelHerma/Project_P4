@@ -66,12 +66,15 @@ namespace Project_P4.Migrations
                 name: "Income",
                 columns: table => new
                 {
+                    IncomeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MemberID = table.Column<int>(type: "int", nullable: false),
                     IncomeDate = table.Column<DateTime>(type: "date", nullable: false),
                     IncomeCost = table.Column<decimal>(type: "money", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Income", x => x.IncomeID);
                     table.ForeignKey(
                         name: "ref1",
                         column: x => x.MemberID,
