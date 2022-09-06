@@ -24,9 +24,9 @@ namespace Project_P4.ViewModels
             {
                 AllExpences = new ObservableCollection<Expence>(context.Expences.ToList() );
             }
-            AddExpenceClick = new RelayCommand(x => DisplayAddMessage());
-            UpdateExpenceClick = new RelayCommand(x => DisplayUpdateMessage());
-            RemoveExpenceClick = new RelayCommand(x => DisplayRemoveMessage());
+            AddExpenceClick = new RelayCommand(x => DisplayAddMessage(), x => this.IsValid);
+            UpdateExpenceClick = new RelayCommand(x => DisplayUpdateMessage(), x => this.IsValid);
+            RemoveExpenceClick = new RelayCommand(x => DisplayRemoveMessage(), x => this.IsValid);
 
         }
 
@@ -152,5 +152,6 @@ namespace Project_P4.ViewModels
         public ICommand AddExpenceClick { get; set; }
         public ICommand UpdateExpenceClick { get; set; }
         public ICommand RemoveExpenceClick { get; set; }
+        public bool IsValid { get => ExpenceCost > 0; }
     }
 }
